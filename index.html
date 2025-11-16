@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Focus Trainer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top bar (clock + back) – hidden on home -->
+    <header id="top-bar" class="hidden">
+      <div id="clock">0:00:00</div>
+      <button id="back-button" class="icon-button" aria-label="Back to home">
+        ⟵
+      </button>
+    </header>
+
+    <main>
+      <!-- Landing / Home screen -->
+      <section id="home-screen" class="screen active">
+        <div class="home-header">
+          <div class="home-logo-row">
+            <img src="icons/logo.png" alt="Focus Trainer logo" class="app-logo" />
+            <h1>Focus Trainer</h1>
+          </div>
+          <p>Select a mode</p>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card directions" data-mode="directions">
+            <span class="mode-title">Directions</span>
+            <span class="mode-subtitle">Random arrows</span>
+          </button>
+
+          <button class="mode-card numbers" data-mode="numbers">
+            <span class="mode-title">Numbers</span>
+            <span class="mode-subtitle">1 to 24</span>
+          </button>
+
+          <button class="mode-card colours" data-mode="colours">
+            <span class="mode-title">Colours</span>
+            <span class="mode-subtitle">Rainbow full-screen</span>
+          </button>
+        </div>
+
+        <button id="settings-button" class="icon-button settings-button" aria-label="Settings">
+          ⚙
+        </button>
+
+        <div id="settings-panel" class="settings hidden">
+          <h2>Settings</h2>
+
+          <div class="settings-section">
+            <label class="settings-label" for="interval-input">Switch interval (seconds)</label>
+            <input
+              id="interval-input"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+            />
+            <div class="interval-display">
+              <span id="interval-value">1.0 s</span>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-heading">
+              <h3>Directions</h3>
+              <p class="settings-hint">Choose which arrows to include.</p>
+            </div>
+            <div id="direction-options" class="pill-group" role="group" aria-label="Direction options"></div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-heading">
+              <h3>Numbers</h3>
+              <p class="settings-hint">Set the minimum and maximum values.</p>
+            </div>
+            <div class="number-inputs">
+              <label class="inline-label" for="number-min">Min
+                <input id="number-min" type="number" inputmode="numeric" step="1" />
+              </label>
+              <label class="inline-label" for="number-max">Max
+                <input id="number-max" type="number" inputmode="numeric" step="1" />
+              </label>
+            </div>
+            <p id="number-error" class="settings-hint error hidden" role="alert">Max must be greater than min.</p>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-heading">
+              <h3>Colours</h3>
+              <p class="settings-hint">Pick the colours to show.</p>
+            </div>
+            <div id="colour-options" class="pill-group" role="group" aria-label="Colour options"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mode screen: Directions / Numbers / Colours -->
+      <section id="mode-screen" class="screen hidden">
+        <div id="mode-label" class="mode-label"></div>
+
+        <!-- Initialization / paused layer: big play/pause icon -->
+        <div id="initialization-layer" class="center-layer">
+          <div id="play-pause-icon" class="big-icon">▶</div>
+        </div>
+
+        <!-- Running layer: random content -->
+        <div id="content-layer" class="center-layer hidden">
+          <div id="display-main" class="display-main"></div>
+          <div id="display-sub" class="display-sub"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

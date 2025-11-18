@@ -1,0 +1,38 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS thumbnails
+._*
+
+# macOS directories that might appear on external volumes
+.Spotlight-V100
+.Trashes
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Linux system files
+*~
+.directory
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.~lock.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (if added in future)
+.env
+.env.local
+.env.*.local

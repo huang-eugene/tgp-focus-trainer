@@ -338,6 +338,16 @@ function loadSettingsFromStorage() {
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
+
+      // Security: Prevent prototype pollution by validating the parsed object
+      // and only accessing known properties
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        throw new Error('Invalid settings format');
+      }
+
+      // Security: Freeze the parsed object to prevent modification
+      Object.freeze(parsed);
+
       if (typeof parsed.switchDelayMs === "number") {
         userSettings.switchDelayMs = clampInterval(parsed.switchDelayMs);
       }

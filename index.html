@@ -6,6 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0f172a" />
 
+  <!-- Security Headers -->
+  <!-- NOTE: For production with a web server, configure these headers at the server level
+       for better performance and security. Current meta tags provide basic protection
+       for static hosting environments. -->
+
+  <!-- Content Security Policy: Restricts resource loading to prevent XSS attacks -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self';
+                 style-src 'self' 'unsafe-inline';
+                 img-src 'self' data:;
+                 connect-src 'self';
+                 font-src 'self';
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self';
+                 frame-ancestors 'none';
+                 upgrade-insecure-requests;">
+
+  <!-- Prevent clickjacking attacks -->
+  <meta http-equiv="X-Frame-Options" content="DENY">
+
+  <!-- Prevent MIME-sniffing attacks -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+  <!-- Control referrer information -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Restrict browser features and APIs -->
+  <meta http-equiv="Permissions-Policy"
+        content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()">
+
   <!-- PWA manifest -->
   <link rel="manifest" href="manifest.webmanifest" />
 
